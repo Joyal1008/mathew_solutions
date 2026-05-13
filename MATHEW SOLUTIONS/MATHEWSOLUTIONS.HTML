@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathew Solutions – Electric Vehicle Manufacturer</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ev-green: #00FF87;
+    --ev-green-dark: #00C96A;
+    --ev-orange: #FF6B00;
+    --ev-orange-glow: rgba(255,107,0,0.3);
+    --dark-bg: #0A0E1A;
+    --dark-card: #111827;
+    --dark-border: #1E2A3A;
+    --text-primary: #F0F4FF;
+    --text-secondary: #8BA3C0;
+    --purple-accent: #7C4DFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Exo 2', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--dark-border);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .nav-logo-icon {
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--ev-orange), #FF3D00);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 100rem;
+    color: white;
+    box-shadow: 0 0 40px var(--ev-orange-glow);
+  }
+  .nav-logo-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+  }
+  .nav-logo-text span { color: var(--ev-orange); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ev-green); }
+  .nav-cta {
+    background: var(--ev-orange);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover { background: #e05500 !important; box-shadow: 0 0 20px var(--ev-orange-glow); color: white !important; }
+
+  /* HERO */
+
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 7rem 2rem 3rem;
+    overflow: hidden;
+  }
+  #why {
+  text-align: center;
+}
+  .hero-title {
+  text-align: center;
+}
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,135,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,135,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,255,135,0.1);
+    border: 1px solid rgba(0,255,135,0.3);
+    color: var(--ev-green);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge-dot {
+    width: 8px; height: 8px;
+    background: var(--ev-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+   
+  }
+  .hero-title .brand { color: white; }
+  .hero-title .accent { color: var(--ev-orange); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-sub strong { color: var(--ev-green); font-weight: 600; }
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .btn-primary {
+    background: var(--ev-orange);
+    color: white;
+    padding: 0.9rem 2.5rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 30px var(--ev-orange-glow);
+  }
+  .btn-primary:hover {
+    background: #cc5500;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px var(--ev-orange-glow);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ev-green);
+    padding: 0.9rem 2.5rem;
+    border: 1px solid var(--ev-green);
+    border-radius: 4px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: rgba(0,255,135,0.1);
+    transform: translateY(-2px);
+  }
+  
+
+  /* BANNER IMAGE */
+  .banner-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px var(--ev-orange-glow);
+  }
+  .banner-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .banner-overlay-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,14,26,0.9));
+    padding: 2rem 2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .banner-phones {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    color: var(--ev-green);
+  }
+  .banner-phones p { margin-bottom: 0.2rem; }
+  .banner-gstin {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* STATS */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--dark-border);
+    border-top: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--dark-border);
+  }
+  .stat-item {
+    background: var(--dark-card);
+    padding: 2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ev-orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 0.3rem;
+  }
+
+  /* SECTIONS */
+  .section-tag {
+  text-align: center;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.section-desc {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+  section {
+    padding: 2rem 1rem;
+    max-width: 5000px;
+    margin: 0 auto;
+  }
+  .section-full {
+    max-width: 100%;
+    padding: 2rem 0;
+  }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-tag {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ev-green);
+    margin-bottom: 0.75rem;
+    font-family: 'Share Tech Mono', monospace;
+    
+  }
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(4rem, 4vw, 5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .section-title span { color: var(--ev-orange); }
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    max-width: 700px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+
+  /* PRODUCTS */
+
+
+  .products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 8rem;
+}
+@media (max-width: 1000px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 10px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  .product-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--ev-orange);
+    box-shadow: 0 20px 60px rgba(255,107,0,0.2);
+  }
+  .product-card-img {
+    height: 400px;
+    background: linear-gradient(10deg, #1a1f2e, #0d1117);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden;
+    position: relative;
+  }
+    .small-img {
+  width: 100px;   /* reduce width */
+  height: 1000px;
+}
+  .product-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .product-badge {
+    position: absolute;
+    top: 1rem; right: 2rem;
+    background: var(--ev-orange);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 1000px;
+  }
+  .product-card-body {
+    padding: 1.5rem;
+  }
+  .product-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .product-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .product-specs {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+  .spec-tag {
+    background: rgba(0,255,135,0.08);
+    border: 1px solid rgba(0,255,135,0.2);
+    color: var(--ev-green);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'Rajdhani', monospace;
+  }
+  .product-cta {
+    display: block;
+    text-align: center;
+    background: transparent;
+    border: 1px solid var(--ev-orange);
+    color: var(--ev-orange);
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .product-cta:hover {
+    background: var(--ev-orange);
+    color: rgb(24, 19, 19);
+  }
+ 
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 5rem;
+    
+  }
+  #transport {
+  text-align: center;
+}
+  .why-card {
+    background: var(--dark-card);
+    border: 6px solid var(--dark-border);
+    border-radius: 50px;
+    padding: 2rem;
+    transition: all 0.5s;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 1px; height: 1;
+    background: var(--ev-green);
+    transition: height 0.2s;
+  }
+  .why-card:hover::before { height: 100%; }
+  .why-card:hover {
+    border-color: rgba(0,255,135,0.3);
+    transform: translateX(4px);
+  }
+  .why-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .why-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    #why {
+  text-align: center;
+}
+    
+  }
+  .why-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--dark-card);
+    border-top: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--dark-border);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,107,0,0.1);
+    border: 1px solid rgba(255,107,0,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-detail-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+  }
+  .contact-detail-val {
+    font-family: 'Helvetica', monospace;
+    font-size: 0.95rem;
+    color: var(--ev-green);
+    letter-spacing: 2px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem;
+  /* Target the dropdown container */
+select {
+ 
+  color: white;
+  
+  padding: 5px;
+}
+
+/* Target the individual items inside */
+select option {
+  background-color: #1a1a1a;
+  color: white;
+} }
+  .form-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--dark-border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--ev-orange);
+  }
+  .form-textarea { min-height: 120px; resize: vertical; }
+  .form-select { appearance: none; cursor: pointer; }
+  .form-submit {
+    background: var(--ev-orange);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px var(--ev-orange-glow);
+  }
+  .form-submit:hover {
+    background: #cc5500;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--ev-orange-glow);
+  }
+  .form-success {
+    display: none;
+    background: rgba(0,255,135,0.1);
+    border: 1px solid rgba(146, 228, 190, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    color: var(--ev-green);
+    font-weight: 600;
+  }
+  
+  
+
+  /* FOOTER */
+  footer {
+    background: #05080F;
+    border-top: 1px solid var(--dark-border);
+    padding: 3rem 2rem 1.5rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand-name {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-name span { color: var(--ev-orange); }
+  .footer-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: 320px;
+  }
+  .footer-contact-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+  }
+  .footer-contact-line span {letter-spacing: 3px; color: var(--ev-green); font-family: 'Helvetica', monospace; }
+  .footer-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--ev-green); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dark-border);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  .footer-gstin {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* TICKER */
+  .ticker-bar {
+    background: var(--ev-orange);
+    padding: 0.6rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-content {
+    display: inline-flex;
+    gap: 3rem;
+    animation: ticker 20s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ticker-dot {
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 4fr 4fr;
+    gap: 12rem;
+    align-items: center;
+    
+  }
+.section-inner {
+  padding: 2rem;
+}
+.section-inner {
+  max-width: 3000px;
+}
+  .about-img-block {
+    position: relative;
+    border-radius: 60px;
+    overflow: hidden;
+    border: 1px solid var(--dark-border);
+    
+  }
+  .about-img-block img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .about-label {
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid var(--ev-orange);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+  .about-label-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ev-orange);
+    line-height: 1;
+  }
+  .about-label-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .about-features { list-style: none; margin-top: 1.5rem; }
+  .about-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--dark-border);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .about-features li:last-child { border-bottom: none; }
+  .about-check {
+    width: 20px; height: 20px;
+    background: rgba(0,255,135,0.1);
+    border: 1px solid rgba(0,255,135,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--ev-green);
+    flex-shrink: 0;
+    margin-top: 1px;
+    
+  }
+  
+
+  /* MOBILE */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(10,14,26,0.98);
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--dark-border);
+    }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  /* ===== PREMIUM ANIMATIONS ===== */
+
+/* Smooth Reveal Upgrade */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  filter: blur(8px);
+  transition: 
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Product Hover Upgrade */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 25px 80px rgba(255,107,0,0.25),
+    0 0 40px rgba(255,107,0,0.15);
+}
+
+/* Image Zoom */
+.product-card-img img {
+  transition: transform 0.6s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Button Ripple */
+.btn-primary, .btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Floating Hero Glow */
+.hero-glow {
+  animation: floatGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-48%, -52%) scale(1.1); }
+}
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 115%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.35; /* adjust for visibility */
+}
+
+/* Optional dark overlay for readability */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,14,26,0.7);
+  z-index: -1;
+}
+body {
+  font-family: 'Exo 2', sans-serif;
+  background: 
+    linear-gradient(rgba(10,14,26,0.9), rgba(10,14,26,0.95)),
+    url('background.jpg'); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  
+}
+.section-code-bg {
+  position: relative;
+  z-index: 1;
+}
+
+.section-code-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10, 255, 141, 0.034) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.082) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+.section-desc {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #00b140;
+  box-shadow: 0 0 8px rgba(0,177,64,0.2);
+  
+}
+
+.submit-btn {
+  background: #00b140;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #009933;
+}
+
+
+  
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+ 
+<nav>
+  <div class="nav-logo">
+    <a href="MATHEWSOLUTIONS.HTML">
+        <img src="logo1-Photoroom.png" alt="Company Logo" width="30">
+    </a>
+  
+    <div class="nav-logo-text">MATHEW <span>SOLUTIONS</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar" style="margin-top:72px;">
+  <div class="ticker-content" id="ticker">
+    <span class="ticker-item">⚡ Electric Cycles <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🛺 Electric Rickshaws <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🚛 Electric Loaders <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🔋 Zero Emission Vehicles <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🏭 Tamilnadu Manufacturer <span class="ticker-dot"></span></span>
+    <span class="ticker-item">📞 90427 81508 <span class="ticker-dot"></span></span>
+    <span class="ticker-item">⚡ Electric Cycles <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🛺 Electric Rickshaws <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🚛 Electric Loaders <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🔋 Zero Emission Vehicles <span class="ticker-dot"></span></span>
+    <span class="ticker-item">🏭 Tamilnadu Manufacturer <span class="ticker-dot"></span></span>
+    <span class="ticker-item">📞 63795 96741 <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- HERO -->
+ <!-- HERO BACKGROUND VIDEO -->
+<video autoplay muted loop playsinline class="hero-video">
+  <source src="sa.mp4" type="video/mp4">
+</video>
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Tamilnadu's Premier EV Manufacturer
+    </div>
+    <h1 class="hero-title">
+      <span class="brand">DRIVE THE</span><br>
+       <span class="accent">ELECTRIC</span><br>
+      <span class="brand">FUTURE</span>
+    </h1>
+    <p class="hero-sub">
+      Manufacturer of <strong>Electric Cycles, Three Wheelers & Rickshaws</strong><br>
+      Built in Karur — Serving all of India
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Explore Vehicles</a>
+      <a href="#contact" class="btn-secondary">Get Free Quote</a>
+    </div>
+  </div>
+  <div class="banner-wrapper reveal">
+    <img src="mathew.jpeg" alt="Mathew Solutions Electric Vehicles Banner" />
+    <div class="banner-overlay-bar">
+      <div class="banner-phones">
+       
+     
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Vehicles Delivered</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Product Categories</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Electric Powered</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Emissions</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+
+
+</div>
+<section id="products">
+  <p class="section-tag">Our Fleet</p>
+  <h2 class="section-title">Electric <span>Vehicles</span> We Build</h2>
+  <p class="section-desc">From last-mile delivery to passenger transport, every vehicle is engineered for Indian roads and built to last.</p>
+
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-card-img">
+        <img src="blue.png" class="small-img" alt="Mathew Solutions Electric Vehicles Fleet" style="object-position: 10% 5%;" />
+        <span class="product-badge">Best Seller</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Electric Cargo Loader (with open body)</div>
+        <p class="product-desc">Heavy-duty electric loader designed for commercial cargo transport. Maximum payload capacity with zero fuel costs.</p>
+        <div class="product-specs">
+          <span class="spec-tag"> 400kg Load</span>
+          <span class="spec-tag">50 to 100km Range</span>
+          <span class="spec-tag">4hr or 5hr Charge</span>
+        </div>
+        <a href="#contact" class="product-cta">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-card-img">
+        <img src="red three wheeler.png" alt="Mathew Solutions Electric Vehicles Fleet" style="object-position: 10% 25%;" />
+        <span class="product-badge">Popular</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Electric Rickshaw (with wind glass)</div>
+        <p class="product-desc">Passenger electric rickshaw — smooth, silent ride with comfortable cabin. Perfect for city transport & last-mile connectivity.</p>
+        <div class="product-specs">
+          <span class="spec-tag">2 Passengers</span>
+          <span class="spec-tag">50 to 100km Range</span>
+          <span class="spec-tag">Fast Charge</span>
+        </div>
+        <a href="#contact" class="product-cta">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-card-img">
+      <img src="electric cycle.png" alt="Mathew Solutions Electric Vehicles Fleet" />
+        <span class="product-badge">Best Seller</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Electric Cycle</div>
+        <p class="product-desc">Lightweight, agile electric bicycle. Ideal for urban commuters and short-distance riders seeking eco-friendly transport.</p>
+        <div class="product-specs">
+          <span class="spec-tag">40km Range</span>
+          <span class="spec-tag">Pedal Assist</span>
+          <span class="spec-tag">Lightweight</span>
+          <span class="spec-tag">25km/h Top Speed</span>
+        </div>
+        <a href="#contact" class="product-cta">Enquire Now</a>
+      </div>
+    </div>
+
+
+    <div class="product-card reveal reveal-delay-3">
+      <div class="product-card-img">
+        <img src="kulfi.png" alt="Mathew Solutions Electric Vehicles Fleet" style="object-position: 0.5% 40%;" />
+        <span class="product-badge">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Kulfi E Vehicle</div>
+        <p class="product-desc">Custom-built electric vendor cart for mobile businesses. Perfect for food vendors, kulfi sellers, and mobile retailers.</p>
+        <div class="product-specs">
+          <span class="spec-tag">Custom Build</span>
+          <span class="spec-tag">Refrigeration</span>
+          <span class="spec-tag">Branded</span>
+        </div>
+        <a href="#contact" class="product-cta">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-card-img">
+        <img src="yellow.png" alt="Mathew Solutions Electric Vehicles Fleet" style="object-position: 10% 45%;" />
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Three Wheeler Loader</div>
+        <p class="product-desc">Compact three-wheel electric loader for narrow lanes and urban delivery. Low maintenance, high efficiency.</p>
+        <div class="product-specs">
+          <span class="spec-tag">400kg Payload</span>
+          <span class="spec-tag">Urban Ready</span>
+          <span class="spec-tag">Low Maintenance</span>
+        </div>
+        <a href="#contact" class="product-cta">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-card-img" style="background: linear-gradient(135deg, #21412b, #1b311b); align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem;">
+        <div style="font-size: 3rem;">🫱🏻‍🫲🏿</div>
+        <div style="font-family: 'Rajdhani',sans-serif; font-size: 1rem; color: var(--ev-green); letter-spacing: 2px; text-align: center; padding: 0 1rem;">CUSTOM EV SOLUTIONS</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-name">Custom EV Build</div>
+        <p class="product-desc">Need something specific? We engineer custom electric vehicles to your exact requirements — branding, specs, and capacity.</p>
+        <div class="product-specs">
+          <span class="spec-tag">100% Custom</span>
+          <span class="spec-tag">Branded</span>
+          <span class="spec-tag">Any Spec</span>
+        </div>
+        <a href="#contact" class="product-cta">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+  <section id="products" class="section-code-bg">
+   
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-full" style="background: #111122de; border-top: 1px solid var(--dark-border); border-bottom: 1px solid var(--dark-border);">
+  <div class="section-inner" id="about">
+    <div class="about-grid">
+      <div class="about-img-block reveal">
+        <img src="poster.png" alt="Mathew Solutions Electric Vehicles Fleet" />
+        <div class="about-label">
+          <div class="about-label-num">Karur</div>
+          <div class="about-label-text">DT 621313, Tamilnadu</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="section-tag">Our Story</p>
+        <h2 class="section-title">Built in <span>Tamilnadu</span>. Trusted Across India.</h2>
+        <p class="section-desc">
+          Mathew Solutions is a leading electric vehicle manufacturer based in Karur, Tamilnadu. 
+          We build electric cycles, three-wheelers, rickshaws, and loaders — all engineered for Indian roads and designed to cut your transport costs to near zero.
+        </p>
+        <ul class="about-features">
+          <li>
+            <span class="about-check">✓</span>
+            Factory-direct pricing — no middlemen, maximum savings
+          </li>
+          <li>
+            <span class="about-check">✓</span>
+            Registered manufacturer with GSTIN: 33CJCPV7051D1ZB
+          </li>
+          <li>
+            <span class="about-check">✓</span>
+            Custom-built electric vehicles for any commercial use case
+          </li>
+          <li>
+            <span class="about-check">✓</span>
+            Full after-sale service and spare parts support
+          </li>
+          <li>
+            <span class="about-check">✓</span>
+            Eligible for government EV subsidy assistance
+          </li>
+        </ul>
+        <div style="margin-top: 2rem;">
+          <a href="#contact" class="btn-primary">Contact Us Today</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section id="why">
+  <p class="section-tag">Why Choose Us</p>
+  <h2 class="section-title">The <span>Mathew</span> Advantage</h2>
+  <p class="section-desc">From factory floor to your doorstep — here's what sets us apart in India's booming EV market.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🏭</div>
+      <div class="why-title">Direct Manufacturer</div>
+      <p class="why-desc">We build every vehicle ourselves — no resellers, no markup. Factory-direct quality at factory-direct prices.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Zero Fuel Costs</div>
+      <p class="why-desc">Eliminate petrol and diesel forever. Our EVs run on electricity — saving thousands every month.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">Full Service Support</div>
+      <p class="why-desc">Our technicians provide end-to-end maintenance and spare parts for every vehicle we manufacture.</p>
+    </div>
+    <div class="why-card reveal reveal-delay-3">
+      <div class="why-icon">🌍</div>
+      <div class="why-title">Eco-Certified</div>
+      <p class="why-desc">100% zero-emission vehicles. Every Mathew Solutions vehicle helps fight pollution and climate change.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Custom Builds</div>
+      <p class="why-desc">Need a branded vendor cart or a custom loader? We engineer bespoke electric vehicles to your specs.</p>
+    </div>
+   <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">📞</div>
+      <div class="why-title">Customer First</div>
+      <p class="why-desc">Our team is here to support you — from choosing the right vehicle to after-sale service and support.</p>
+   </div>
+      </div>
+  </div>
+  </section>
+  <br>
+
+   <h1 class="hero-title">
+      <span class="brand">THE FIRST</span><br>
+      <span class="accent">TRANSPORTATION  </span><br>
+      <span class="brand"> IS FREE</span>
+      <div style="text-align: center;">
+</div>
+      <br>
+    </h1>
+</section>
+
+<SECTION id = transport>
+  <p class="section-tag">Transport
+    <div style="text-align: center;"></div></p>
+  <h2 class="section-title">We Provide Free Transport for Your First Cargo Delivery!</h2>
+  <p class="section-desc">Experience our electric cargo loader with zero transport costs on your first delivery. Contact us to claim this exclusive offer and drive the future of logistics.</p>
+
+</SECTION>
+
+<!-- CONTACT -->
+<div class="contact-section section-full">
+  <div class="section-inner" id="contact">
+    <p class="section-tag">Get In Touch</p>
+    <h2 class="section-title">Request a <span>Quote</span></h2>
+    <p class="section-desc">Tell us what you need — we'll get back to you with pricing and specs within 24 hours.</p>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-item">
+          
+          <div  class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-val">9042781508</div>
+            <br>
+            <div class="contact-detail-val">6379596741</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val">mathewsolutions2@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Factory Address</div>
+            <div class="contact-detail-val">2/67 Church Building,Vadaseri Road, Kavalkaranpatti,<br>Karur DT 621313, Tamilnadu</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🏢</div>
+          <div>
+            <div class="contact-detail-label">GSTIN</div>
+            <div class="contact-detail-val">33CJCPV7051D1ZB</div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem; padding:1.5rem; background: rgba(0, 255, 136, 0.082); border:1px solid rgba(0,255,135,0.2); border-radius:10px;">
+          <p style="font-size:0.875rem; color:var(--ev-green); font-weight:600; margin-bottom:0.5rem;">⚡ Working Hours</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary);">Monday – Saturday: 9:00 AM – 6:00 PM</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary);">Sunday: By Appointment</p>
+        </div>
+      </div>
+
+    <!-- CONTACT FORM -->
+<form 
+  action="https://formspree.io/f/mwvyrzel"
+  method="POST"
+ 
+>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label class="form-label">Full Name *</label>
+      <input 
+        type="text"
+        name="name"
+        class="form-input"
+        placeholder="Your name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Phone *</label>
+      <input 
+        type="tel"
+        name="phone"
+        class="form-input"
+        placeholder="Your number"
+        required
+      />
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input 
+      type="email"
+      name="email"
+      class="form-input"
+      placeholder="your@email.com"
+    />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Vehicle Interest *</label>
+
+    <select 
+      name="vehicle"
+      class="form-select"
+      required
+    >
+      <option value="">Select a vehicle type</option>
+      <option>Electric Cargo Loader</option>
+      <option>Electric Rickshaw(with wind glass)</option>
+      <option>Electric Cycle</option>
+      <option>Electric kulfi vehicle</option>
+      <option>Three Wheeler Loader</option>
+      <option>Custom EV Build</option>
+      
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Message</label>
+
+    <textarea
+      name="message"
+      class="form-textarea"
+      rows="4"
+      placeholder="Any specific requirements or questions?"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="form-submit">
+    ⚡ Send Enquiry
+  </button>
+
+  <div id="formSuccess"
+    style="display:none; margin-top:1rem; padding:1rem;
+    background: rgba(0,255,136,0.1);
+    border:1px solid rgba(0,255,135,0.3);
+    border-radius:8px;">
+    
+    <p style="color: var(--ev-green); font-weight:600;">
+      ✅ Thank you! Your enquiry has been sent.
+    </p>
+
+    <p style="color: var(--text-secondary); font-size:0.9rem;">
+      We'll get back to you within 24 hours.
+    </p>
+
+  </div>
+
+</form>
+ <script>
+ {
+  e.preventDefault();
+
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+
+  btn.innerText = "Sending...";
+  btn.disabled = true;
+
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.reset();
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.innerText = "Sent ✅";
+    } else {
+      alert("❌ Failed to send enquiry.");
+      btn.innerText = "⚡ Send Enquiry";
+      btn.disabled = false;
+    }
+
+  } catch (error) {
+    alert("❌ Network error.");
+    btn.innerText = "⚡ Send Enquiry";
+    btn.disabled = false;
+  }
+}
+</script>
+       
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">MATHEW <span>SOLUTIONS</span></div>
+        <p class="footer-desc">
+          Karur-based manufacturer of electric cycles, rickshaws, three-wheelers, and loaders. 
+         and more affordable transport for India.
+        </p>
+        <div class="footer-contact-line">📞 <span>90427 81508 &nbsp;|&nbsp; 63795 96741</span></div>
+        <div class="footer-contact-line">✉️ <span>mathewsolutions2@gmail.com</span></div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#products">Our Products</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#contact">Contact & Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a href="#products">Electric Cargo Loader</a></li>
+          <li><a href="#products">Electric Rickshaw (with wind glass)</a></li>
+          <li><a href="#products">Electric Cycle</a></li>
+          <li><a href="#products">Electric kulfi vehicle</a></li>
+          <li><a href="#products">Three Wheeler Loader</a></li>
+          <li><a href="#products">Custom EV Build</a></li>
+        </ul>
+      </div>
+    </div>
+   
+    </form>
+  </div>
+</section>
+  <script>
+// NAV TOGGLE
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+
+
+// FORM SUBMIT
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 1200);
+}
+
+// NAVBAR SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10,14,26,0.98)';
+  } else {
+    nav.style.background = 'rgba(10,14,26,0.92)';
+  }
+});
+
+// SMOOTH SCROLL LINKS
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// BUTTON RIPPLE EFFECT
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+  button.addEventListener('click', function (e) {
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    this.appendChild(ripple);
+
+    const rect = this.getBoundingClientRect();
+    ripple.style.left = (e.clientX - rect.left) + 'px';
+    ripple.style.top = (e.clientY - rect.top) + 'px';
+
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// PARALLAX HERO GLOW
+window.addEventListener("scroll", () => {
+  const scrolled = window.scrollY;
+  const glow = document.querySelector('.hero-glow');
+
+  if (glow) {
+    glow.style.transform =
+      `translate(-50%, calc(-50% + ${scrolled * 0.2}px))`;
+  }
+});
+</script>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 1200);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10,14,26,0.98)';
+  } else {
+    nav.style.background = 'rgba(10,14,26,0.92)';
+  }
+});
+</script>
+</body>
+</html>
